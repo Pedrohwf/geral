@@ -2,8 +2,8 @@ Sub Separar_Ctria()
 
 Dim i As Integer
 
-'Application.ScreenUpdating = False
-'Range("B2").Select
+Application.ScreenUpdating = False
+Range("B2").Select
 
 i = 1
 
@@ -11,11 +11,16 @@ Do While Not IsEmpty(ActiveCell)
 
     If ActiveCell.Value = "CTRIA3" Then
         current = ActiveCell.Address
-        Selection.EntireRow.Cut
-        Range("j4").Offset(i, 0).Select
+        With ActiveCell
+            r = .Row
+            c = .Column
+        End With
+        Range(Cells(r, c), Cells(r, c + 5)).Select
         Selection.Copy
+        Range("j2").Offset(i, 0).Select
+        ActiveSheet.Paste
         Range(current).Select
-        Selection.Delete Shift:=xlUp
+        Selection.EntireRow.Delete Shift:=xlUp
         i = i + 1
     End If
     
