@@ -1,0 +1,29 @@
+Sub Separar_Ctria()
+
+Dim current As Range
+Dim i As Integer
+
+'Application.ScreenUpdating = False
+'Range("B2").Select
+
+ActiveCell.Select
+
+i = 1
+
+Do While Not IsEmpty(ActiveCell)
+
+    If ActiveCell.Value = "CTRIA3" Then
+        current = ActiveCell
+        ActiveCell.EntireRow.Cut
+        'deletar linha em branco
+        Range("j4").Offset(i, 0).Select
+        'colar valor
+        'retornar à celula original
+        Range("current").Select
+        i = i + 1
+    End If
+    
+ActiveCell.Offset(1, 0).Select
+Loop
+
+End Sub
